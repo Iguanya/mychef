@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:chefs_name",
+ "creation": "2024-09-15 12:53:55.651023",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_section",
+  "naming_series",
+  "chefs_name",
+  "profile_picture",
+  "resume",
+  "transcripts",
+  "chefs_description",
+  "column_break_ibzc",
+  "more_details",
+  "tab_2_tab"
+ ],
+ "fields": [
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "default": "chef-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Naming_series",
+   "search_index": 1
+  },
+  {
+   "fieldname": "chefs_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Chef's Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "profile_picture",
+   "fieldtype": "Attach Image",
+   "label": "Profile picture",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resume",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Resume"
+  },
+  {
+   "fieldname": "transcripts",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Transcripts"
+  },
+  {
+   "fieldname": "chefs_description",
+   "fieldtype": "Small Text",
+   "label": "Chef's Description"
+  },
+  {
+   "fieldname": "column_break_ibzc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "more_details",
+   "fieldtype": "Text Editor",
+   "label": "More Details"
+  },
+  {
+   "fieldname": "tab_2_tab",
+   "fieldtype": "Tab Break",
+   "label": "Tab 2"
+  }
+ ],
+ "image_field": "profile_picture",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-15 14:02:33.771782",
+ "modified_by": "Administrator",
+ "module": "Mychef",
+ "name": "Register Chef",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
