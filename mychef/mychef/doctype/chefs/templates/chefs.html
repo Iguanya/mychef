@@ -1,0 +1,15 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h1>{{ title |e }}</h1>
+
+<div class="chefs-list">
+    {% for doc in items %}
+        {% include "mychef/templates/chefs_row.html" %}
+    {% endfor %}
+</div>
+
+{% if not items %}
+    <p>No chefs available at the moment.</p>
+{% endif %}
+{% endblock %}

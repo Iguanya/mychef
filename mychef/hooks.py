@@ -12,15 +12,14 @@ app_license = "agpl-3.0"
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "mychef",
-# 		"logo": "/assets/mychef/logo.png",
-# 		"title": "Mychef",
-# 		"route": "/mychef",
-# 		"has_permission": "mychef.api.permission.has_app_permission"
-# 	}
-# ]
+add_to_apps_screen = [
+ 	{
+ 		"name": "mychef",
+ 		"logo": "/assets/mychef/logo.png",
+ 		"title": "Mychef",
+ 		"route": "/mychef"
+ 		}
+ ]
 
 # Includes in <head>
 # ------------------
@@ -30,7 +29,7 @@ app_license = "agpl-3.0"
 # app_include_js = "/assets/mychef/js/mychef.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/mychef/css/mychef.css"
+web_include_css = "/assets/mychef/css/styles.css"
 # web_include_js = "/assets/mychef/js/mychef.js"
 
 # include custom scss in every website theme (without file extension ".scss")
@@ -145,6 +144,14 @@ app_license = "agpl-3.0"
 # 		"on_trash": "method"
 # 	}
 # }
+
+doc_events = {
+   "Chefs": {
+       "on_update": "mychef.mychef.api.get_chefs",
+       "before_save": "mychef.mychef.api.permission.validate_permission"
+   }
+}
+
 
 # Scheduled Tasks
 # ---------------

@@ -1,17 +1,21 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "Chef-.####",
  "creation": "2024-09-15 13:40:34.801671",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "chefs_section",
   "first_name",
   "last_name",
   "full_name",
   "column_break_ewza",
   "email_address",
-  "phone"
+  "phone",
+  "published",
+  "route"
  ],
  "fields": [
   {
@@ -42,11 +46,30 @@
    "fieldname": "phone",
    "fieldtype": "Phone",
    "label": "Phone"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published",
+   "read_only": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "fieldname": "chefs_section",
+   "fieldtype": "Section Break",
+   "label": "Chefs"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "published",
  "links": [],
- "modified": "2024-09-15 14:02:19.260160",
+ "modified": "2024-09-16 11:15:00.418370",
  "modified_by": "Administrator",
  "module": "Mychef",
  "name": "Chefs",
@@ -64,8 +87,18 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1
   }
  ],
+ "route": "Chefs",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": []

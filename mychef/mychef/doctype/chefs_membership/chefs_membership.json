@@ -1,0 +1,94 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_rename": 1,
+ "autoname": "CHEF.####",
+ "creation": "2024-09-15 14:04:31.981147",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_8gze",
+  "amended_from",
+  "members",
+  "full_name",
+  "column_break_uajd",
+  "from_date",
+  "to_date",
+  "paid"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_8gze",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Chefs Membership",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fetch_from": "members.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full name"
+  },
+  {
+   "fieldname": "column_break_uajd",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": "From date"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "paid",
+   "fieldtype": "Check",
+   "label": "paid"
+  },
+  {
+   "fieldname": "members",
+   "fieldtype": "Link",
+   "label": "Chef Member",
+   "options": "Chefs"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-09-15 15:13:44.985000",
+ "modified_by": "Administrator",
+ "module": "Mychef",
+ "name": "Chefs Membership",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
