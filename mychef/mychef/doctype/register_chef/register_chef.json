@@ -9,6 +9,7 @@
  "field_order": [
   "details_section",
   "naming_series",
+  "are_you_a_chef",
   "chefs_name",
   "profile_picture",
   "resume",
@@ -18,7 +19,9 @@
   "more_details",
   "route",
   "published",
-  "tab_2_tab"
+  "tab_2_tab",
+  "client_section",
+  "first_name"
  ],
  "fields": [
   {
@@ -77,7 +80,7 @@
   {
    "fieldname": "tab_2_tab",
    "fieldtype": "Tab Break",
-   "label": "Tab 2"
+   "label": "Client Details"
   },
   {
    "fieldname": "route",
@@ -90,13 +93,29 @@
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Published"
+  },
+  {
+   "default": "0",
+   "fieldname": "are_you_a_chef",
+   "fieldtype": "Check",
+   "label": "Are you a chef?"
+  },
+  {
+   "fieldname": "client_section",
+   "fieldtype": "Section Break",
+   "label": "Client"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First name"
   }
  ],
  "image_field": "profile_picture",
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2024-09-17 13:51:15.072997",
+ "modified": "2024-09-17 15:36:13.955717",
  "modified_by": "Administrator",
  "module": "Mychef",
  "name": "Register Chef",

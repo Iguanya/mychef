@@ -1,140 +1,200 @@
 <head>
     <style>
-        .list-view { width: 100%; margin: 20px 0; }
-        .filters { display: flex; margin-bottom: 20px; }
-        .filters input { margin-right: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 200px; }
-        .filters button { padding: 10px 20px; background-color: #ff6347; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .list-header, .list-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #ddd; }
-        .list-header-item, .list-item-field { flex: 1; padding: 10px; text-align: left; }
-        .list-header-item { font-weight: bold; background-color: #f4f4f4; }
-        .list-item:hover { background-color: #f9f9f9; }
-        .profile-thumbnail { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-        .pagination { margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .list-view {
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .filters input, .filters button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+
+        .list-header, .list-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .list-header-item, .list-item-field {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            width: 15%;
+        }
+
+        .list-item-id, .list-item-field {
+            text-align: center;
+        }
+
+        .profile-thumbnail {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .list-header-item, .list-item-field {
+                width: 20%;
+                font-size: 14px;
+            }
+
+            .profile-thumbnail {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .list-header-item, .list-item-field {
+                width: 50%;
+                font-size: 12px;
+            }
+
+            .profile-thumbnail {
+                width: 20px;
+                height: 20px;
+            }
+
+            .filters input, .filters button {
+                width: 100%;
+            }
+        }
     </style>
 
     <script>
-let current_page = 1;
-let total_pages = 1;  // Will be updated after fetching data
+        let current_page = 1;
+        let total_pages = 1;
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Fetch chefs when the page loads
-    updatePage();
-});
+        document.addEventListener("DOMContentLoaded", function () {
+            updatePage();
+        });
 
-function applyFilters() {
-    const nameFilter = document.getElementById("filter-name").value;
-    const phoneFilter = document.getElementById("filter-phone").value;
-    const emailFilter = document.getElementById("filter-email").value;
+        function applyFilters() {
+            const nameFilter = document.getElementById("filter-name").value;
+            const phoneFilter = document.getElementById("filter-phone").value;
+            const emailFilter = document.getElementById("filter-email").value;
 
-    frappe.call({
-        method: 'frappe.client.get_list',
-        args: {
-            doctype: 'Chefs',
-            filters: {
-                'first_name': ['like', '%' + nameFilter + '%'],
-                'phone': ['like', '%' + phoneFilter + '%'],
-                'email_address': ['like', '%' + emailFilter + '%']
-            },
-            fields: ['name', 'first_name', 'last_name', 'phone', 'email_address', 'profile_picture'],
-            limit_start: (current_page - 1) * 10,
-            limit_page_length: 10
-        },
-        callback: function(response) {
-            // Update chefs list with the filtered data
-            updateChefsList(response.message);
+            frappe.call({
+                method: 'frappe.client.get_list',
+                args: {
+                    doctype: 'Chefs',
+                    filters: {
+                        'first_name': ['like', '%' + nameFilter + '%'],
+                        'phone': ['like', '%' + phoneFilter + '%'],
+                        'email_address': ['like', '%' + emailFilter + '%']
+                    },
+                    fields: ['name', 'first_name', 'last_name', 'phone', 'email_address', 'profile_picture'],
+                    limit_start: (current_page - 1) * 10,
+                    limit_page_length: 10
+                },
+                callback: function (response) {
+                    updateChefsList(response.message);
+                }
+            });
         }
-    });
-}
 
-function previousPage() {
-    if (current_page > 1) {
-        current_page--;
-        updatePage();
-    }
-}
-
-function nextPage() {
-    if (current_page < total_pages) {
-        current_page++;
-        updatePage();
-    }
-}
-
-function updatePage() {
-    frappe.call({
-        method: 'frappe.client.get_list',
-        args: {
-            doctype: 'Chefs',
-            limit_start: (current_page - 1) * 10,
-            limit_page_length: 10,
-            fields: ['name', 'first_name', 'last_name', 'phone', 'email_address', 'profile_picture']
-        },
-        callback: function(response) {
-            const chefs = response.message || [];
-            updateChefsList(chefs);
-            // Update total pages based on number of chefs
-            if (chefs.length > 0) {
-                total_pages = Math.ceil(chefs.length / 10);  // Calculate total pages
+        function previousPage() {
+            if (current_page > 1) {
+                current_page--;
+                updatePage();
             }
         }
-    });
-}
 
-function updateChefsList(chefs) {
-    const chefsList = document.getElementById('chefs-list');
-    chefsList.innerHTML = '';  // Clear current list
-    chefs.forEach(chef => {
-        const profileImage = chef.profile_picture || '/assets/mychef/images/default-profile.png';  // Default image for null values
-        const chefItem = `
-            <div class="list-item">
-                <div class="list-item-id">${chef.name}</div>
-                <div class="list-item-field">${chef.first_name || 'N/A'}</div>
-                <div class="list-item-field">${chef.last_name || 'N/A'}</div>
-                <div class="list-item-field">${chef.phone || 'N/A'}</div>
-                <div class="list-item-field">${chef.email_address || 'N/A'}</div>
-                <div class="list-item-field"><img src="${profileImage}" alt="Profile" class="profile-thumbnail"></div>
-            </div>`;
-        chefsList.innerHTML += chefItem;
-    });
-}
+        function nextPage() {
+            if (current_page < total_pages) {
+                current_page++;
+                updatePage();
+            }
+        }
 
+        function updatePage() {
+            frappe.call({
+                method: 'frappe.client.get_list',
+                args: {
+                    doctype: 'Chefs',
+                    limit_start: (current_page - 1) * 10,
+                    limit_page_length: 10,
+                    fields: ['name', 'first_name', 'last_name', 'phone', 'email_address', 'profile_picture']
+                },
+                callback: function (response) {
+                    const chefs = response.message || [];
+                    updateChefsList(chefs);
+                    total_pages = Math.ceil(chefs.length / 10);
+                }
+            });
+        }
+
+        function updateChefsList(chefs) {
+            const chefsList = document.getElementById('chefs-list');
+            chefsList.innerHTML = '';
+            chefs.forEach(chef => {
+                const profileImage = chef.profile_picture || '/assets/mychef/images/default-profile.png';
+                const chefItem = `
+                    <div class="list-item">
+                        <div class="list-item-id">${chef.name}</div>
+                        <div class="list-item-field">${chef.first_name || 'N/A'}</div>
+                        <div class="list-item-field">${chef.last_name || 'N/A'}</div>
+                        <div class="list-item-field">${chef.phone || 'N/A'}</div>
+                        <div class="list-item-field">${chef.email_address || 'N/A'}</div>
+                        <div class="list-item-field"><img src="${profileImage}" alt="Profile" class="profile-thumbnail"></div>
+                    </div>`;
+                chefsList.innerHTML += chefItem;
+            });
+        }
     </script>
 </head>
 
 <body>
-    <div class="filter-container">
-        <input type="text" id="chefFilter" onkeyup="filterChefs()" placeholder="Filter by last name...">
-    </div>
+    <div class="list-view">
+        <!-- Filters -->
+        <div class="filters">
+            <input type="text" id="filter-name" placeholder="Filter by Name">
+            <input type="text" id="filter-phone" placeholder="Filter by Phone">
+            <input type="text" id="filter-email" placeholder="Filter by Email">
+            <button onclick="applyFilters()">Apply Filters</button>
+        </div>
 
-<div class="list-view">
-    <!-- Filters -->
-    <div class="filters">
-        <input type="text" id="filter-name" placeholder="Filter by Name">
-        <input type="text" id="filter-phone" placeholder="Filter by Phone">
-        <input type="text" id="filter-email" placeholder="Filter by Email">
-        <button onclick="applyFilters()">Apply Filters</button>
-    </div>
+        <!-- Table Header -->
+        <div class="list-header">
+            <div class="list-header-item">ID</div>
+            <div class="list-header-item">First Name</div>
+            <div class="list-header-item">Last Name</div>
+            <div class="list-header-item">Phone</div>
+            <div class="list-header-item">Email</div>
+            <div class="list-header-item">Profile Picture</div>
+        </div>
 
-    <!-- Table Header -->
-    <div class="list-header">
-        <div class="list-header-item">ID</div>
-        <div class="list-header-item">First Name</div>
-        <div class="list-header-item">Last Name</div>
-        <div class="list-header-item">Phone</div>
-        <div class="list-header-item">Email</div>
-        <div class="list-header-item">Profile Picture</div>
-    </div>
+        <!-- Table Body -->
+        <div class="list-body" id="chefs-list">
+            <!-- Chef Data from Database will appear here -->
+        </div>
 
-    <!-- Table Body -->
-    <div class="list-body" id="chefs-list">
-        <!-- Chef Data from Database will appear here -->
+        <!-- Pagination -->
+        <div class="pagination">
+            <button onclick="previousPage()">Previous</button>
+            <span>Page {{ current_page }} of {{ total_pages }}</span>
+            <button onclick="nextPage()">Next</button>
+        </div>
     </div>
-
-    <!-- Pagination -->
-    <div class="pagination">
-        <button onclick="previousPage()">Previous</button>
-        <span>Page {{ current_page }} of {{ total_pages }}</span>
-        <button onclick="nextPage()">Next</button>
-    </div>
-</div>
 </body>

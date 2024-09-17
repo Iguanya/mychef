@@ -149,7 +149,11 @@ doc_events = {
    "Chefs": {
        "on_update": "mychef.api.get_chefs",
        "before_save": "mychef.api.permission.validate_permission"
-   }
+   },
+   "signup": {
+       "after_insert": "mychef.api.create_user"
+    }
+
 }
 
 

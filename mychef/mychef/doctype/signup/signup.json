@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "autoname": "format:CLIENT-.{####}",
+ "creation": "2024-09-17 15:37:25.950959",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "client_details_section",
+  "naming_series",
+  "first_name",
+  "last_name",
+  "column_break_auwp",
+  "email_address",
+  "phone_rzvv",
+  "profile_picture",
+  "password"
+ ],
+ "fields": [
+  {
+   "fieldname": "client_details_section",
+   "fieldtype": "Section Break",
+   "label": "Client Details"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Last name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email_address",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_rzvv",
+   "fieldtype": "Phone",
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "profile_picture",
+   "fieldtype": "Attach Image",
+   "label": "Profile picture"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "is_virtual": 1,
+   "label": "Naming Series",
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_auwp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-09-17 16:03:56.556859",
+ "modified_by": "Administrator",
+ "module": "Mychef",
+ "name": "signup",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

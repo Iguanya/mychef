@@ -61,7 +61,7 @@
 {% endblock %}
 <script>
     frappe.call({
-        method: "mychef.mychef.api.get_chefs",
+        method: "mychef.api.get_chefs",
         callback: function(r) {
             if (r.message) {
                 var chefs = r.message;
