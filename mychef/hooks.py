@@ -57,7 +57,7 @@ web_include_css = "/assets/mychef/css/styles.css"
 # ----------
 
 # application home page (will override Website Settings)
-home_page = "homepage"
+# home_page = "homepage"
 
 # website user home page (by Role)
 # role_home_page = {
