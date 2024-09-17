@@ -15,23 +15,28 @@
   "email_address",
   "phone",
   "published",
-  "route"
+  "route",
+  "profile_picture"
  ],
  "fields": [
   {
    "fieldname": "first_name",
    "fieldtype": "Data",
-   "label": "First name"
+   "in_list_view": 1,
+   "label": "First name",
+   "reqd": 1
   },
   {
    "fieldname": "last_name",
    "fieldtype": "Data",
-   "label": "Last name"
+   "label": "Last name",
+   "reqd": 1
   },
   {
    "fieldname": "full_name",
    "fieldtype": "Data",
-   "label": "Full name"
+   "label": "Full name",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_ewza",
@@ -45,10 +50,12 @@
   {
    "fieldname": "phone",
    "fieldtype": "Phone",
-   "label": "Phone"
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
   },
   {
-   "default": "0",
+   "default": "published",
    "fieldname": "published",
    "fieldtype": "Check",
    "label": "Published",
@@ -63,13 +70,19 @@
    "fieldname": "chefs_section",
    "fieldtype": "Section Break",
    "label": "Chefs"
+  },
+  {
+   "fieldname": "profile_picture",
+   "fieldtype": "Attach Image",
+   "label": "Profile Picture"
   }
  ],
+ "force_re_route_to_default_view": 1,
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_published_field": "published",
  "links": [],
- "modified": "2024-09-16 11:15:00.418370",
+ "modified": "2024-09-17 14:30:38.674652",
  "modified_by": "Administrator",
  "module": "Mychef",
  "name": "Chefs",

@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "allow_rename": 1,
  "autoname": "field:chefs_name",
  "creation": "2024-09-15 12:53:55.651023",
@@ -15,6 +16,8 @@
   "chefs_description",
   "column_break_ibzc",
   "more_details",
+  "route",
+  "published",
   "tab_2_tab"
  ],
  "fields": [
@@ -75,12 +78,25 @@
    "fieldname": "tab_2_tab",
    "fieldtype": "Tab Break",
    "label": "Tab 2"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Route"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "Published"
   }
  ],
  "image_field": "profile_picture",
  "index_web_pages_for_search": 1,
+ "is_published_field": "published",
  "links": [],
- "modified": "2024-09-15 14:02:33.771782",
+ "modified": "2024-09-17 13:51:15.072997",
  "modified_by": "Administrator",
  "module": "Mychef",
  "name": "Register Chef",
@@ -98,8 +114,18 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1
   }
  ],
+ "route": "Register",
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": []
