@@ -26,6 +26,7 @@
     </div>
 </section>
 
+
 <!-- How It Works Section -->
 <section class="how-it-works">
     <h2>How It Works</h2>
@@ -58,3 +59,27 @@
     </div>
 </section>
 {% endblock %}
+<script>
+    frappe.call({
+        method: "mychef.mychef.api.get_chefs",
+        callback: function(r) {
+            if (r.message) {
+                var chefs = r.message;
+                var chefsContainer = document.querySelector('.chefs-grid');
+                chefsContainer.innerHTML = '';
+
+                chefs.forEach(function(chef) {
+                    var chefCard = `
+                        <div class="chef-card">
+                            <img src="/assets/mychef/images/profile.jpg" alt="${chef.full_name}">
+                            <h3>${chef.full_name}</h3>
+                            <p>Email: ${chef.email_address}</p>
+                            <a href="#" class="btn-secondary">View Profile</a>
+                        </div>
+                    `;
+                    chefsContainer.innerHTML += chefCard;
+                });
+            }
+        }
+    });
+</script>

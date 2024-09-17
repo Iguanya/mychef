@@ -1,4 +1,5 @@
 import frappe
 
 def get_context(context):
-    context.chefs = frappe.get_all('Chefs', fields=['first_name', 'last_name', 'full_name', 'email_address', 'phone', 'published', 'chefs'])
+    """Pass chefs data to the template context"""
+    context.chefs = frappe.get_all('Chefs', filters={'published': 1}, fields=['full_name', 'email_address'])

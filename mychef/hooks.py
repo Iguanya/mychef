@@ -51,7 +51,7 @@ web_include_css = "/assets/mychef/css/styles.css"
 # Svg Icons
 # ------------------
 # include app icons in desk
-# app_include_icons = "mychef/public/icons.svg"
+# app_include_icons = "frappe/public/icons.svg"
 
 # Home Pages
 # ----------
@@ -147,8 +147,8 @@ home_page = "homepage"
 
 doc_events = {
    "Chefs": {
-       "on_update": "mychef.mychef.api.get_chefs",
-       "before_save": "mychef.mychef.api.permission.validate_permission"
+       "on_update": "mychef.api.get_chefs",
+       "before_save": "mychef.api.permission.validate_permission"
    }
 }
 

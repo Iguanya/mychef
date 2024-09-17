@@ -2,8 +2,15 @@ import frappe
 
 @frappe.whitelist()
 def get_chefs():
-    return frappe.db.get_all('Chefs', fields=['first_name', 'last_name', 'email_address'])
+    """Fetches all published chefs with relevant details"""
+    return frappe.get_all(
+        'Chefs', 
+        filters={'published': 1}, 
+        fields=['first_name', 'last_name', 'full_name', 'email_address'], 
+        order_by='creation desc'
+    )
 
 def validate_permission():
+    """Permission validation logic"""
     print("Permission function called")
-    # your permission logic here
+    # Add your custom permission logic here
